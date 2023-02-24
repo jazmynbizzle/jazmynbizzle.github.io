@@ -1,0 +1,680 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>初步的discussion ideas</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a4572503-de7b-4247-a303-62f64f6ff757" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤯</span></div><h1 class="page-title">初步的discussion ideas</h1></header><div class="page-body"><h1 id="92ff52f4-da4c-41aa-89e4-abf48d2e37c4" class=""><details open=""><summary>Key Concepts</summary></details></h1><div class="indented"><p id="9459333f-92ad-4dd3-90a9-20b7220d2a1f" class="">“二十岁的我们”</p><p id="2b83f8ce-c6b4-4a41-953b-9345b5b57ef0" class=""><strong>主打理念 痛点</strong></p><p id="ad8dd6f2-2251-4c7c-9349-9e327fa53877" class="">年轻人们对于很多问题的深度思考不愿share，或者没有系统总结和深挖</p><p id="6b5b16c8-b775-46ae-badd-5aa86442c6d9" class="">我可以不赞同你的想法，但是我尊重接受不同想法存在的可能性 求同存异</p><p id="acf2c29c-2db6-4c4e-921d-8f2b36d3c2e0" class="">
+</p><p id="b2bc3f8d-12c6-491b-92d4-590644891262" class=""><strong>key concept</strong></p><p id="1a25e51f-4cb8-4399-84d2-c06268841beb" class=""><mark class="highlight-red">世俗对于“成功”的评判</mark></p><p id="471a43f3-5906-4293-9f46-14275141fe24" class="">对于失败的认知</p><p id="4660ed9d-5098-46cb-8c35-6a67ca2ff299" class="">成长</p><p id="d531dfd7-3149-4cbf-b59d-2368f3fda5af" class="">open-minded</p><p id="155363f3-7603-455a-9dea-18c4ec6314b2" class="">
+</p><p id="9b12dd84-a89b-4382-bdd5-617d7ededa52" class=""><strong>主打：</strong></p><p id="46296751-8b7d-47cf-af7f-151210d01e33" class="">深挖思考 真实 积极 deeply truly positively   尝试 探索 试错 迷惑（大家不愿展现，更能激起共鸣，未来？）</p><p id="114492e9-cc19-47fb-a227-7757aaee128f" class="">夹杂一些知识，比较自然地（提到的哪个概念，说不完整的话，字幕补充）</p></div><h1 id="87809012-822e-40d2-a340-479d63c5ce35" class=""><details open=""><summary>讨论话题</summary></details></h1><div class="indented"><p id="8f2fb6a5-df6e-4e60-9774-99c5c1cc4f17" class="">讨论话题：</p><p id="82ceecc1-211e-45b6-bc2a-491cdbea17d0" class="">国际生和高考生区别， 教育体系 生活上的不同， 补课
+港校就读体验？？？
+名校光环  社会对于“优秀”的观点
+理智与情感 -》 decision making</p><p id="c84853c4-a1af-4880-99be-76e85b168f94" class="">二次元和三次元</p><p id="c8c5c87b-e0bd-4db4-af2d-38aedc775ed5" class="">在香港读书，在国外读书（在内地等等，嘉宾回）</p><p id="d2ac57f9-e798-4a3c-a564-779488e4ec48" class="">大学中的压力，迷茫，peer pressure</p><p id="109aa21e-cc28-41fa-aa75-cfe71a382a35" class="">网络冲浪展开去（与中国现代汉语言文学，年轻人的审美……）</p><p id="dd9e4c37-0656-42fe-8cf6-2c7580d484a7" class="">关于未来的一些准备（实习→工作上的东西，适应职场； 科研）</p><p id="0d4f2aef-1616-4c7e-a220-0898b1252e1b" class="">童年</p><p id="3ec1a068-b184-483c-9990-b74f6ba35e00" class="">试错和失败，心态，成长，反思</p><p id="1d6e224f-9420-4d29-a956-e042a488bd27" class="">感情经历、心态→什么是爱情</p><p id="6d9b91c7-4dc9-42ed-8e0d-b3f41888cdcf" class="">家庭，家教塑造孩子的性格（diversity，嘉宾回，把握尺度）和父母的关系，交流</p><p id="9be2ab95-e4e6-44f4-b4c5-7e88588818b4" class="">stereotype （理工男穿搭，）</p><p id="25a0b90f-2d73-4518-ad97-83678dc22dc4" class="">友谊分手 失去朋友</p><p id="9012af03-2aac-41ba-9643-1f2b46baf17e" class="">金钱观</p><p id="e9726c3f-6532-4abe-bcd5-88c1e1f80588" class=""><mark class="highlight-yellow">社会事件，文艺作品（专门的子栏目）</mark></p><p id="f4342598-45c3-4174-b307-6f0943be780a" class="">
+</p><p id="76916f7d-54c7-4d16-8980-ae2a381d573e" class="">学业事业</p><ul id="5db1b16f-305d-4b16-ba79-095f4f7e0d1b" class="bulleted-list"><li style="list-style-type:disc">国际生和高考生区别， 教育体系 生活上的不同， 补课</li></ul><ul id="28da70c0-a738-4b70-b664-e11037477bc4" class="bulleted-list"><li style="list-style-type:disc">港校就读体验？？？</li></ul><ul id="80009be0-362a-49d2-90e7-3ef1bdff6792" class="bulleted-list"><li style="list-style-type:disc">名校光环  社会对于“优秀”的观点</li></ul><ul id="4c8a4f71-87a8-43c3-895a-d6c782d32e72" class="bulleted-list"><li style="list-style-type:disc">在香港读书，在国外读书（在内地等等，嘉宾回）</li></ul><ul id="37d88fa5-7d7a-4a08-b8b1-762db0fc0af8" class="bulleted-list"><li style="list-style-type:disc">大学中的压力，迷茫，peer pressure</li></ul><ul id="0bf93b70-4f5b-4935-b6c2-a15cc9ea427e" class="bulleted-list"><li style="list-style-type:disc">关于未来的一些准备（实习→工作上的东西，适应职场； 科研）</li></ul><ul id="bc37ce03-0f76-4041-a1b6-1c51adc31a57" class="bulleted-list"><li style="list-style-type:disc">试错和失败，心态，成长，反思</li></ul><p id="4ee7cabb-10ab-43a7-87df-e72b025da42e" class="">
+</p><p id="8b6c022f-6402-477f-af4c-34f35aa07331" class="">生活</p><ul id="5f18af0b-30dd-4d8c-b288-7782e13f2aea" class="bulleted-list"><li style="list-style-type:disc">理智与情感 -》 decision making</li></ul><ul id="a08cb000-c73c-4522-b064-b368909ebce8" class="bulleted-list"><li style="list-style-type:disc">二次元和三次元</li></ul><ul id="67f05410-b114-4170-8e9a-fb0cabee4ca5" class="bulleted-list"><li style="list-style-type:disc">网络冲浪展开去（与中国现代汉语言文学，年轻人的审美……）</li></ul><ul id="7ec0c2c9-25a2-4600-bcf1-4ddbe6e949f9" class="bulleted-list"><li style="list-style-type:disc">童年</li></ul><ul id="8d3c9746-44ff-45a7-ad45-dfb2c6e45a7d" class="bulleted-list"><li style="list-style-type:disc">感情经历、心态→什么是爱情</li></ul><ul id="949a9248-0dd2-4d8d-80ac-a9738d970c82" class="bulleted-list"><li style="list-style-type:disc">家庭，家教塑造孩子的性格（diversity，嘉宾回，把握尺度）和父母的关系，交流</li></ul><ul id="d5117b1b-c1bb-42eb-a993-8b276acf5149" class="bulleted-list"><li style="list-style-type:disc">stereotype （理工男穿搭，）</li></ul><ul id="14ace727-27de-4a43-b8e6-096fdc07d6e6" class="bulleted-list"><li style="list-style-type:disc">友谊分手 失去朋友</li></ul><ul id="acf06c87-b071-4951-b020-cd802c35bc6e" class="bulleted-list"><li style="list-style-type:disc">金钱观</li></ul></div><h1 id="7b6f59b2-5ab4-4591-8d30-b7486af76d91" class=""><details open=""><summary><strong>前期准备</strong></summary></details></h1><div class="indented"><p id="cef574c7-e0ce-4f45-8022-7b878af25024" class="">branding </p><p id="17a04705-82b2-4452-acf8-2367d96ffdc7" class="">b站等等网络媒体上有无类似形式的up，他们的视频长度，branding，</p><p id="0f34bf47-9a79-4842-9134-e5ae80d6d91f" class="">决定直播形式 二次元？三次元？【？关于虚拟主播业态的调查 “个人势” 形象设计（买）】<div class="indented"><p id="8e9db5aa-6002-4014-b08a-22ccb7f90e08" class="">三次元更加真实，但是一旦稍微有点热度，第一天就被开出来，个人信息没有保护</p></div></p><p id="c7b37396-3a67-48ae-adb1-7857f9dc5e49" class="">受众？</p><p id="b3d60bfc-83c0-42d9-90b3-30974980e707" class="">logo</p><p id="410e5669-3676-41e7-b56e-4b379a136731" class="">Howie美国行程的问题</p><p id="fee7b6b6-1730-4e97-9db9-b608a1fc8134" class="">
+</p><p id="e916fdbe-7c34-499b-a53c-9873a3d752a3" class=""><strong>分工</strong></p><p id="d1009d30-beab-46c9-a038-9e1dd5d3b4b6" class="">Jazmyn：剪辑 小红书运营</p><p id="f14fe5c4-072a-43d4-ae93-762d857c5eed" class="">Howie: 文案 b站运营</p></div><h1 id="2c5c6339-e29f-4645-9c37-4f86ca974755" class=""><details open=""><summary><strong>小目标</strong></summary></details></h1><div class="indented"><p id="867befba-186d-405d-97ba-74d5d274f9d6" class="">7.10前把各平台社交媒体账号搞出来</p><p id="d5be3074-36bf-4210-ab41-9bb87535ebd0" class="">8.7前做出自我介绍和至少一期视频（共2个）第一期正式视频先不上直播<div class="indented"><p id="4702aa3c-dfcd-4f45-9ef1-f1693caa8a18" class="">可能增加一期线下视频</p></div></p><p id="2cba3cae-3941-4dd7-9707-32cbe355370b" class="">第一期视频出来之后根据反响调整战略（更新时间，视频长度），对于表现的反思</p></div><h1 id="89d4adbd-376c-42ea-a7ee-33d75919aee8" class=""><details open=""><summary><strong>反思（注意事项）</strong></summary></details></h1><div class="indented"><p id="561a07d1-f85a-46a4-b728-69923dddc873" class="">循环（抛出问题+个人经历+干货）+总结</p><p id="b9bfcf19-3d5f-40bf-a813-4462bda8a316" class="">视频剪辑时长 </p><p id="e9455970-b8d5-406c-97fc-d9446323ce89" class="">语言的凝练度</p><p id="c0befb04-f998-495a-881b-3f8cf181b0bc" class="">视频风格→两人人设（从真实出发，但是营造的脸谱化一点还是真实的复杂性格，度的掌握需要实践）</p><p id="ef048b2d-ff87-4122-a3de-0c90bce542be" class="">视频跟直播的速度</p></div><h1 id="869a2bd0-bce5-4260-a8ca-6850385ba167" class=""><details open=""><summary><strong>写给咱俩的话</strong></summary></details></h1><div class="indented"><p id="6d4141d8-1220-4098-b503-d7f0967aee7d" class="">6.15晚 Journey启程</p><p id="e02c770c-ea4f-4372-9074-91414f22fbf2" class="">最低的expectation是记录咱俩聊天产生的火花 记录咱俩成长成熟的历程和变化</p><p id="4a2c2de3-df01-4d9b-b5e6-489a7641c627" class="">对于个人隐私的问题顺其自然</p></div><h1 id="4d429d02-036f-4ccf-9fa1-5e51e55bdfa1" class=""><details open=""><summary>栏目</summary></details></h1><div class="indented"><p id="397d086e-32ed-4855-8fd0-abc5cf634ad8" class="">读弹幕环节 不仅是咱们两个，是咱们和网友 <div class="indented"><p id="8264554f-08e9-481a-a6bb-c12e5afdb9d6" class="">音乐电台 Howie as DJ</p><p id="5e004e0c-e8e8-46d1-8db3-9b0ff0cb20f0" class="">开头和结尾 （视频，直播）</p><p id="2e6816a5-927d-41f7-a4c2-55c768d80954" class="">读留言</p><p id="789aad00-4b24-493b-bd18-5784b42200aa" class="">zoom进来</p></div></p></div><p id="cd8333ce-c29c-4c81-a867-f7b6c9719a5f" class=""><div class="indented"><p id="eaaa40d9-ca2e-478b-9fcf-3c66326f318e" class="">
+</p><p id="ae697451-8970-4f3e-8c25-4c2863ae703a" class="">
+</p><p id="8b6f156d-b849-4ee2-b1b1-e5d4a74a1cd2" class="">
+</p></div></p></div></article></body></html>
